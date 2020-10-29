@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm">
+    <form #cadastro="ngForm" (submit)="salvar()">
+      <div class="form-group">
+        <label for="titulo">Titulo</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)] = "titulo" >
+      </div>
+      <div class="form-group">
+        <label for="Descrição">Descriçao</label>
+        <textarea type="text" class="form-control" id="Descricao" name="descricao" rows="3" [(ngModel)] = "descricao"></textarea>
+      </div>
+      <div class="form-group form-check">
+        <input class="form-check-input" type="radio" name="tipo" id="tipo1" name="tipo" value="serie" [(ngModel)] = "tipo">
+        <label class="form-check-label" for="tipo1">Série</label>
+      </div>
+      <div class="form-group form-check">
+        <input class="form-check-input" type="radio" name="tipo" id="tipo2" name="tipo" value="filme" [(ngModel)] = "tipo">
+        <label class="form-check-label" for="tipo2">Filme</label>
+      </div>
+      <div class="form-group">
+        <label for="Ano">Ano</label>
+        <input type="text" class="form-control" id="Ano" name="ano" [(ngModel)] = "ano">
+      </div>
+      <div class="form-group">
+        <label for="Genero">Genero</label>
+        <input type="text" class="form-control" id="Genero" name = "genero" [(ngModel)] = "genero">
+      </div>
+      <div class="form-group">
+        <label for="duracao">Duracao</label>
+        <input type="text" class="form-control" id="duracao" name = "duracao" [(ngModel)] = "duracao"
+        [disabled] = "tipo == 'serie'">
+      </div>
+      <div class="form-group">
+        <label for="temporadas">Temporadas</label>
+        <input type="text" class="form-control" id="temporadas" name = "temporadas" [(ngModel)] = "temporadas" 
+        [disabled] = "tipo == 'filme'">
+      </div>
+      <button type="submit" class="btn btn-primary">Salvar</button>
+      <button *ngIf = "editando != null" type="submit" class="btn btn-danger">Cancelar</button>
+    </form>
+  </div>  
+  <div class="col-sm">
+    <app-catalogo
+    [cards] = "card_list"
+    (excluir_card) = "excluir($event)"
+    (editar_card) = "editar($event)"
+    (estrela_card) = "estrela($event)">
+    </app-catalogo>
+  </div>
+</div>

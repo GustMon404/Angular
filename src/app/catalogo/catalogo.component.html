@@ -1,0 +1,29 @@
+<div *ngFor="let item of cards">
+        <div class="card text-center">
+            <div class="card-header">
+            <p *ngIf = "item.tipo == 'filme'">Filme</p>
+            <p *ngIf = "item.tipo == 'serie'">Serie</p>
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">{{item.titulo}}</h5>
+            <p class="card-text">{{item.descricao}}</p>
+            <p class="card-text">{{item.ano}} - {{item?.duracao}} {{item?.temporada}}</p>
+            <p class="card-text">{{item.genero}}</p>
+            <button type="button" class="btn btn-primary" (click)="editar(item)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="excluir(item)">Excluir</button>
+            </div>
+            <div class="card-footer">
+                <i *ngIf = "item.star >= 1; else vazio1" class = "fa fa-star checked" (click) = "estrela(1,item)"></i>
+                <ng-template #vazio1><i class="fa fa-star" (click) = "estrela(1,item)"></i></ng-template>
+                <i *ngIf = "item.star >= 2; else vazio2" class = "fa fa-star checked" (click) = "estrela(2,item)"></i>
+                <ng-template #vazio2><i class="fa fa-star" (click) = "estrela(2,item)"></i></ng-template>
+                <i *ngIf = "item.star >= 3; else vazio3" class = "fa fa-star checked" (click) = "estrela(3,item)"></i>
+                <ng-template #vazio3><i class="fa fa-star" (click) = "estrela(3,item)"></i></ng-template>
+                <i *ngIf = "item.star >= 4; else vazio4" class = "fa fa-star checked" (click) = "estrela(4,item)"></i>
+                <ng-template #vazio4><i class="fa fa-star" (click) = "estrela(4,item)"></i></ng-template>
+                <i *ngIf = "item.star >= 5; else vazio5" class = "fa fa-star checked" (click) = "estrela(5,item)"></i>
+                <ng-template #vazio5><i class="fa fa-star" (click) = "estrela(5,item)"></i></ng-template>
+            </div>
+        </div>
+        <br>
+</div>
